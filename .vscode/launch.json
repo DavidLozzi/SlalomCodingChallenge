@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-CalculatorApplication<calculator>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "com.davidlozzi.calculator.CalculatorApplication",
+      "projectName": "calculator",
+      "args": ""
+    }
+  ]
+}
