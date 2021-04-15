@@ -1,0 +1,2 @@
+# SlalomCodingChallenge
+Slalom coding challenge
