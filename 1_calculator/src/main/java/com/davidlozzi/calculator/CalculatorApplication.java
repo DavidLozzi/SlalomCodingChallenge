@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -15,6 +15,7 @@ import javax.script.ScriptException;
 
 @SpringBootApplication
 @RestController
+@Service
 public class CalculatorApplication {
 
   public static void main(String[] args) {
@@ -25,7 +26,7 @@ public class CalculatorApplication {
 
   @GetMapping("/calculate")
   public ResponseEntity<Answer> calculate(@RequestParam(value = "calculation", defaultValue = "") String calculation)
-      throws ScriptException {
+      throws CalcException {
     try {
       if (calculation != null && calculation != "") {
         double result = Math.calculate(calculation);
@@ -37,9 +38,9 @@ public class CalculatorApplication {
         return new ResponseEntity<>(answer, HttpStatus.BAD_REQUEST);
       }
     } catch (ScriptException ex) {
-      throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "Math error: " + ex.toString());
+      throw new CalcException("Math error: " + ex.toString());
     } catch (Exception ex) {
-      throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "Error: " + ex.toString());
+      throw new CalcException("Error: " + ex.toString());
     }
   }
 }
