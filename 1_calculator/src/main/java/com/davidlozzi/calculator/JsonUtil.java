@@ -9,8 +9,6 @@ import java.util.List;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-// https://stackabuse.com/reading-and-writing-json-in-java/
-// https://www.baeldung.com/jackson-object-mapper-tutorial
 public class JsonUtil {
   private static String historyFile = "1_calculator/history.json";
 

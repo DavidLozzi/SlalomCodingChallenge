@@ -26,7 +26,6 @@ public class CalculatorApplication {
   private final AtomicLong counter = new AtomicLong();
   private String badMathMessage = "make sure to provide your equation in the parameter ?calculation=2*2. use %2B for +, i.e. 2%2B2 equals 4";
 
-  // add logging
   @GetMapping("/calculate")
   @ResponseBody
   public ResponseEntity<Answer> calculate(@RequestParam(value = "calculation", defaultValue = "") String calculation,
