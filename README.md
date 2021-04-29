@@ -7,8 +7,12 @@ be focusing on creating UIs on top of my end points.
 
 ## The Challenges
 
-There will be 6 challenges total...
+There will be 6 challenges total:
 
 ### Challenge 1 - Calculator
 
-A great starting challenge. Super simple, lets me get to know Java some, create my first project, etc.
+A great starting challenge. Super simple, lets me get to know Java some, create my first project, etc. Learn more at xxx
+
+### Challenge 2 - Pomodoro
+
+coming...
