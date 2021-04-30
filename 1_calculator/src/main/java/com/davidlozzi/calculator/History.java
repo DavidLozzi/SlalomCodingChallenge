@@ -1,14 +1,16 @@
 package com.davidlozzi.calculator;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.Serializable;
 
-public class History {
+public class History implements Serializable {
   private String key;
   private String value;
 
-  @JsonCreator
-  public History(@JsonProperty("key") String key, @JsonProperty("value") String value) {
+  public History() {
+
+  }
+
+  public History(String key, String value) {
     this.key = key;
     this.value = value;
   }
