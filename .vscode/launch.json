@@ -4,10 +4,24 @@
       "type": "java",
       "name": "Spring Boot-CalculatorApplication<calculator>",
       "request": "launch",
+      "mainClass": "com.davidlozzi.calculator.CalculatorApplication",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-PomodoroApplication<pomodoro>",
+      "request": "launch",
+      "mainClass": "com.davidlozzi.pomodoro.PomodoroApplication",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-PomodoroApplication<pomodoro>",
+      "request": "launch",
       "cwd": "${workspaceFolder}",
       "console": "internalConsole",
-      "mainClass": "com.davidlozzi.calculator.CalculatorApplication",
-      "projectName": "calculator",
+      "mainClass": "com.davidlozzi.pomodoro.PomodoroApplication",
+      "projectName": "pomodoro",
       "args": ""
     }
   ]
