@@ -13,4 +13,4 @@ A great starting challenge. Super simple, lets me get to know Java some, create 
 
 ### Challenge 2 - Pomodoro
 
-A challenging challenge, as I wouldn't put a timer in an API, I'd let the front-end handle it, BUT I am learning, and did find some new things in this challenge. Learn more here: coming shortly.
+A challenging challenge, as I wouldn't put a timer in an API, I'd let the front-end handle it, BUT I am learning, and did find some new things in this challenge. Learn more here: [Challenge #2 - Staying focused with a tomato](https://davidlozzi.com/2021/05/06/challenge-2-staying-focused-with-a-tomato/).
