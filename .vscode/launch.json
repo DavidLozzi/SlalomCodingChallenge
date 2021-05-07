@@ -23,6 +23,16 @@
       "mainClass": "com.davidlozzi.pomodoro.PomodoroApplication",
       "projectName": "pomodoro",
       "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-SearchApplication<search>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "com.davidlozzi.search.SearchApplication",
+      "projectName": "search",
+      "args": ""
     }
   ]
 }

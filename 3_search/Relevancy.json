@@ -1,0 +1,70 @@
+[
+  {
+    "character": "VADER",
+    "score": 100
+  },
+  {
+    "character": "THREEPIO",
+    "score": 1
+  },
+  {
+    "character": "JABBA",
+    "score": 80
+  },
+  {
+    "character": "LUKE",
+    "score": 20
+  },
+  {
+    "character": "HAN",
+    "score": 30
+  },
+  {
+    "character": "LEIA",
+    "score": 20
+  },
+  {
+    "character": "LANDO",
+    "score": 40
+  },
+  {
+    "character": "EMPEROR",
+    "score": 100
+  },
+  {
+    "character": "YODA",
+    "score": 30
+  },
+  {
+    "character": "BEN",
+    "score": 20
+  },
+  {
+    "character": "HAN and LUKE",
+    "score": 20
+  },
+  {
+    "character": "STORMTROOPER",
+    "score": 50
+  },
+  {
+    "character": "ANAKIN",
+    "score": 100
+  },
+  {
+    "character": "BOBA FETT",
+    "score": 80
+  },
+  {
+    "movie": "SW_EpisodeIV.txt",
+    "score": 30
+  },
+  {
+    "movie": "SW_EpisodeV.txt",
+    "score": 60
+  },
+  {
+    "movie": "SW_EpisodeVI.txt",
+    "score": 90
+  }
+]
