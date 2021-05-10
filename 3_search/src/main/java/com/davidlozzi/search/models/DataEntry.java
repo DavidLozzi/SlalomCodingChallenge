@@ -1,5 +1,7 @@
 package com.davidlozzi.search.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,7 +17,20 @@ public class DataEntry {
     return value != null && !value.trim().isEmpty();
   }
 
+  @JsonIgnore
   public boolean isValid() {
     return notEmpty(this.character) && notEmpty(this.dialog);
+  }
+
+  @JsonIgnore
+  public String getValueByName(String fieldName) {
+    switch (fieldName) {
+      case "movie":
+        return this.movie;
+      case "character":
+        return this.character;
+      default:
+        return null;
+    }
   }
 }

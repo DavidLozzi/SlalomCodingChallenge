@@ -11,8 +11,9 @@ import lombok.*;
 @NoArgsConstructor
 public class SearchResult extends RepresentationModel<SearchResult> {
   private String keyword;
-  private List<ResultItem> results;
   private Integer resultCount;
   private Integer startIndex;
   private Integer pageSize;
+  private List<ResultItem> results;
+  private List<Filter> filters;
 }
