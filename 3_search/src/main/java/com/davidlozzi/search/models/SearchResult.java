@@ -6,9 +6,8 @@ import org.springframework.hateoas.RepresentationModel;
 
 import lombok.*;
 
-// lombok does work here
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
 @NoArgsConstructor
 public class SearchResult extends RepresentationModel<SearchResult> {
   private String keyword;

@@ -6,8 +6,12 @@ import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.davidlozzi.search.models.ApiException;
+
+import org.springframework.http.HttpStatus;
+
 public class Download {
-  public static void files() { // TODO use custom error handler
+  public static void files() throws ApiException {
     try {
       String[] files = { "https://appdev-code-challenge.s3.amazonaws.com/challenge3_search/SW_EpisodeIV.txt",
           "https://appdev-code-challenge.s3.amazonaws.com/challenge3_search/SW_EpisodeV.txt",
@@ -25,19 +29,25 @@ public class Download {
         fileOutputStream.close();
         System.out.println("downloaded " + url);
       }
+    } catch (ApiException ex) {
+      throw ex;
     } catch (Exception ex) {
-      throw new RuntimeException("Download file error: " + ex.toString());
+      throw new ApiException("Download file error: " + ex.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
-  private static String getFilename(String path) {
-    Pattern pat = Pattern.compile("/(SW_Episode[VI]*.txt)");
-    Matcher mat = pat.matcher(path);
+  private static String getFilename(String path) throws ApiException {
+    try {
+      Pattern pat = Pattern.compile("/(SW_Episode[VI]*.txt)");
+      Matcher mat = pat.matcher(path);
 
-    String fileName = "";
-    if (mat.find()) {
-      fileName = mat.group(1);
+      String fileName = "";
+      if (mat.find()) {
+        fileName = mat.group(1);
+      }
+      return fileName;
+    } catch (Exception ex) {
+      throw new ApiException("filename parse error: " + ex.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
-    return fileName;
   }
 }

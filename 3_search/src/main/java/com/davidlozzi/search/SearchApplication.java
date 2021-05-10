@@ -5,6 +5,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import java.util.Arrays;
 import java.util.List;
 
+import com.davidlozzi.search.models.ApiErrorResponse;
+import com.davidlozzi.search.models.ApiException;
 import com.davidlozzi.search.models.ResultItem;
 import com.davidlozzi.search.models.SearchResult;
 
@@ -34,7 +36,7 @@ public class SearchApplication {
       @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
     try {
       if (keyword.equals(null) || keyword.equals("")) {
-        throw new Exception("keyword is missing");
+        throw new ApiException("keyword is missing", HttpStatus.BAD_REQUEST);
       }
       Download.files();
       SearchResult results = new SearchResult();
@@ -44,22 +46,32 @@ public class SearchApplication {
 
       List<ResultItem> resultsList = SearchFiles.search(keyword);
       results.setResultCount(resultsList.size());
-      ResultItem[] pageresults = Arrays.copyOfRange(resultsList.toArray(), startIndex, startIndex + pageSize,
-          ResultItem[].class);
-
-      results.setResults(Arrays.asList(pageresults));
-
       results.add(linkTo(methodOn(SearchApplication.class).search(keyword, startIndex, pageSize)).withSelfRel());
-      results.add(linkTo(methodOn(SearchApplication.class).search(keyword, startIndex + pageSize, pageSize))
-          .withRel("nextPage"));
-      results.add(
-          linkTo(methodOn(SearchApplication.class).search(keyword, 0, results.getResultCount())).withRel("allResults"));
-      return new ResponseEntity<>(results, HttpStatus.OK);
-    } catch (Exception ex) {
-      System.out.print(ex); // TODO new error object
+      if (resultsList.size() > 0) {
+        ResultItem[] pageresults = Arrays.copyOfRange(resultsList.toArray(), startIndex, startIndex + pageSize,
+            ResultItem[].class);
+        pageresults = Arrays.stream(pageresults).filter(i -> i != null).toArray(ResultItem[]::new);
+
+        results.setResults(Arrays.asList(pageresults));
+
+        results.add(linkTo(methodOn(SearchApplication.class).search(keyword, startIndex + pageSize, pageSize))
+            .withRel("nextPage"));
+        results.add(linkTo(methodOn(SearchApplication.class).search(keyword, 0, results.getResultCount()))
+            .withRel("allResults"));
+        return new ResponseEntity<>(results, HttpStatus.OK);
+      } else {
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+      }
+    } catch (ApiException ex) {
+      System.out.print(ex);
       ex.printStackTrace();
-      RuntimeException en = new RuntimeException(ex.toString());
-      return new ResponseEntity<>(en, HttpStatus.INTERNAL_SERVER_ERROR);
+      ApiErrorResponse apiError = new ApiErrorResponse(ex.getMessage(), ex.getHttpStatus().value());
+      return new ResponseEntity<>(apiError, ex.getHttpStatus());
+    } catch (Exception ex) {
+      System.out.print(ex);
+      ex.printStackTrace();
+      ApiErrorResponse apiError = new ApiErrorResponse(ex.toString(), HttpStatus.INTERNAL_SERVER_ERROR.value());
+      return new ResponseEntity<>(apiError, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }
