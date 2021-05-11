@@ -55,10 +55,10 @@ public class SearchApplication {
         ResultItem[] pageresults = Arrays.copyOfRange(resultsList.toArray(), startIndex, startIndex + pageSize,
             ResultItem[].class);
         pageresults = Arrays.stream(pageresults).filter(i -> i != null).toArray(ResultItem[]::new);
+        results.setResults(Arrays.asList(pageresults));
 
         List<Filter> filters = SearchFiles.getFilters(resultsList);
         results.setFilters(filters);
-        results.setResults(Arrays.asList(pageresults));
 
         results.add(
             linkTo(methodOn(SearchApplication.class).search(keyword, startIndex + pageSize, pageSize, movie, character))

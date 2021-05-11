@@ -1,9 +1,7 @@
 package com.davidlozzi.search;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -18,9 +16,7 @@ import com.davidlozzi.search.models.Filter;
 import com.davidlozzi.search.models.FilterValue;
 import com.davidlozzi.search.models.Relevancy;
 import com.davidlozzi.search.models.ResultItem;
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.http.HttpStatus;
@@ -104,8 +100,7 @@ public class SearchFiles {
     return results;
   }
 
-  public static List<ResultItem> search(String keyword, String movie, String character)
-      throws JsonParseException, JsonMappingException, IOException, ApiException {
+  public static List<ResultItem> search(String keyword, String movie, String character) throws ApiException {
     List<ResultItem> results = new ArrayList<ResultItem>();
     List<DataEntry> dataList = createSearchableData();
 
