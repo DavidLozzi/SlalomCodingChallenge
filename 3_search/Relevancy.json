@@ -5,7 +5,7 @@
   },
   {
     "character": "THREEPIO",
-    "score": 1
+    "score": -10
   },
   {
     "character": "JABBA",
@@ -56,15 +56,15 @@
     "score": 80
   },
   {
-    "movie": "SW_EpisodeIV",
+    "movie": "SW_EpisodeIV.txt",
     "score": 30
   },
   {
-    "movie": "SW_EpisodeV",
+    "movie": "SW_EpisodeV.txt",
     "score": 60
   },
   {
-    "movie": "SW_EpisodeVI",
+    "movie": "SW_EpisodeVI.txt",
     "score": 90
   }
 ]
