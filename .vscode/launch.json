@@ -33,6 +33,16 @@
       "mainClass": "com.davidlozzi.search.SearchApplication",
       "projectName": "search",
       "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-UrlredirectorApplication<urlredirector>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "com.davidlozzi.urlredirector.UrlredirectorApplication",
+      "projectName": "urlredirector",
+      "args": ""
     }
   ]
 }
