@@ -1,5 +1,10 @@
 package com.davidlozzi.urlredirector;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
+import java.util.List;
+
+import com.davidlozzi.urlredirector.models.AnalyticData;
 import com.davidlozzi.urlredirector.models.ApiErrorResponse;
 import com.davidlozzi.urlredirector.models.UrlData;
 
@@ -28,23 +33,24 @@ public class UrlredirectorApplication {
         ApiErrorResponse err = new ApiErrorResponse("No longurl provided", 400);
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
       }
-      // no slash so it may be a short URL
-      if (JsonUtil.getUrlByShort(longurl) != null) {
-        UrlData url = JsonUtil.getUrlByShort(longurl);
-        return new ResponseEntity<>(url, HttpStatus.FOUND);
+
+      UrlData url = JsonUtil.getUrlByShort(longurl);
+      if (url == null) {
+        url = JsonUtil.getUrlByLong(longurl);
       }
-      Boolean saved = false;
-      UrlData url = null;
-      while (!saved) {
-        String shortUrl = Utils.getNewId();
-        System.out.print("trying " + shortUrl);
-        if (JsonUtil.getUrlByShort(shortUrl) == null) {
-          url = new UrlData(shortUrl, longurl);
+
+      while (url == null) {
+        String shorturl = Utils.getNewId();
+        System.out.print("trying " + shorturl);
+        if (JsonUtil.getUrlByShort(shorturl) == null) {
+          url = new UrlData(shorturl, longurl);
           JsonUtil.saveUrl(url);
-          saved = true;
         }
       }
 
+      url.add(linkTo(methodOn(UrlredirectorApplication.class).shrink(longurl)).withSelfRel());
+      url.add(linkTo(methodOn(UrlredirectorApplication.class).expand(url.getShortUrl())).withRel("expand"));
+      url.add(linkTo(methodOn(UrlredirectorApplication.class).analytics(url.getShortUrl())).withRel("analytics"));
       return new ResponseEntity<>(url, HttpStatus.OK);
     } catch (Exception ex) {
       ApiErrorResponse err = new ApiErrorResponse(ex.toString(), 500);
@@ -54,18 +60,41 @@ public class UrlredirectorApplication {
 
   @GetMapping("/redirect/expand")
   @ResponseBody
-  public ResponseEntity expand(@RequestParam(value = "shortUrl", defaultValue = "") String shortUrl) {
+  public ResponseEntity expand(@RequestParam(value = "shorturl", defaultValue = "") String shorturl) {
     try {
-      if (shortUrl.trim().length() == 0) {
-        ApiErrorResponse err = new ApiErrorResponse("No shortUrl provided", 400);
+      if (shorturl.trim().length() == 0) {
+        ApiErrorResponse err = new ApiErrorResponse("No shorturl provided", 400);
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
       }
-      // no slash so it may be a short URL
-      if (JsonUtil.getUrlByShort(shortUrl) != null) {
-        UrlData url = JsonUtil.getUrlByShort(shortUrl);
+      UrlData url = JsonUtil.getUrlByShort(shorturl);
+      if (url != null) {
+
+        url.add(linkTo(methodOn(UrlredirectorApplication.class).expand(shorturl)).withSelfRel());
+        url.add(linkTo(methodOn(UrlredirectorApplication.class).analytics(shorturl)).withRel("analytics"));
         return new ResponseEntity<>(url, HttpStatus.OK);
       }
-      ApiErrorResponse err = new ApiErrorResponse("shortUrl " + shortUrl + " was not found", 404);
+      ApiErrorResponse err = new ApiErrorResponse("shorturl " + shorturl + " was not found", 404);
+      return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+
+    } catch (Exception ex) {
+      ApiErrorResponse err = new ApiErrorResponse(ex.toString(), 500);
+      return new ResponseEntity<>(err, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @GetMapping("/redirect/analytics")
+  @ResponseBody
+  public ResponseEntity analytics(@RequestParam(value = "shorturl", defaultValue = "") String shorturl) {
+    try {
+      if (shorturl.trim().length() == 0) {
+        ApiErrorResponse err = new ApiErrorResponse("No shorturl provided", 400);
+        return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+      }
+      List<AnalyticData> analytics = JsonUtil.getAnalyticByShort(shorturl);
+      if (analytics != null) {
+        return new ResponseEntity<>(analytics, HttpStatus.OK);
+      }
+      ApiErrorResponse err = new ApiErrorResponse("shorturl " + shorturl + " was not found", 404);
       return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
 
     } catch (Exception ex) {
