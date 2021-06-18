@@ -28,7 +28,14 @@ public class VenditApplication {
       return new ResponseEntity<>(inventory, HttpStatus.OK);
     } catch (Exception ex) {
       ApiErrorResponse err = new ApiErrorResponse(ex.toString(), 500);
+      System.out.println(ex);
       return new ResponseEntity<>(err, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+  }
+
+  @GetMapping("/vend")
+  @ResponseBody
+  public ResponseEntity vend(@RequestParam(value = "itemPosition", defaultValue = "") String itemPosition) {
+
   }
 }

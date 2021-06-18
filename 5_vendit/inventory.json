@@ -3,9 +3,135 @@
     {
       "position": "A1",
       "product": {
-        "name": "test",
+        "name": "M&Ms",
         "price": 1,
         "type": "Candy"
+      },
+      "quantity": 25
+    },
+    {
+      "position": "A2",
+      "product": {
+        "name": "Almond Joy",
+        "price": 1,
+        "type": "Candy"
+      },
+      "quantity": 25
+    },
+    {
+      "position": "A3",
+      "product": {
+        "name": "Skittles",
+        "price": 1,
+        "type": "Candy"
+      },
+      "quantity": 25
+    },
+    {
+      "position": "A4",
+      "product": {
+        "name": "Twizzler",
+        "price": 1.5,
+        "type": "Candy"
+      },
+      "quantity": 25
+    },
+    {
+      "position": "A5",
+      "product": {
+        "name": "Twix Peanut Butter",
+        "price": 1.5,
+        "type": "Candy"
+      },
+      "quantity": 25
+    },
+    {
+      "position": "B1",
+      "product": {
+        "name": "Double Mint Gum",
+        "price": 0.25,
+        "type": "Candy"
+      },
+      "quantity": 25
+    },
+    {
+      "position": "B2",
+      "product": {
+        "name": "Big League Chew",
+        "price": 1,
+        "type": "Candy"
+      },
+      "quantity": 25
+    },
+    {
+      "position": "B3",
+      "product": {
+        "name": "Snickers",
+        "price": 1.5,
+        "type": "Candy"
+      },
+      "quantity": 25
+    },
+    {
+      "position": "B4",
+      "product": {
+        "name": "Mounds",
+        "price": 1,
+        "type": "Candy"
+      },
+      "quantity": 25
+    },
+    {
+      "position": "B5",
+      "product": {
+        "name": "Hershey's",
+        "price": 1,
+        "type": "Candy"
+      },
+      "quantity": 25
+    },
+    {
+      "position": "C1",
+      "product": {
+        "name": "Coke",
+        "price": 1.25,
+        "type": "Soda"
+      },
+      "quantity": 25
+    },
+    {
+      "position": "C2",
+      "product": {
+        "name": "Sprite",
+        "price": 1,
+        "type": "Soda"
+      },
+      "quantity": 25
+    },
+    {
+      "position": "C3",
+      "product": {
+        "name": "Diet Coke",
+        "price": 1,
+        "type": "Soda"
+      },
+      "quantity": 25
+    },
+    {
+      "position": "C4",
+      "product": {
+        "name": "Coke Zero",
+        "price": 1,
+        "type": "Soda"
+      },
+      "quantity": 25
+    },
+    {
+      "position": "C5",
+      "product": {
+        "name": "Fanta",
+        "price": 1,
+        "type": "Soda"
       },
       "quantity": 25
     }
