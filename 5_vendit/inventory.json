@@ -1,0 +1,13 @@
+{
+  "itemsForSale": [
+    {
+      "position": "A1",
+      "product": {
+        "name": "test",
+        "price": 1,
+        "type": "Candy"
+      },
+      "quantity": 25
+    }
+  ]
+}

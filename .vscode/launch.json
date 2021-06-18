@@ -43,6 +43,26 @@
       "mainClass": "com.davidlozzi.urlredirector.UrlredirectorApplication",
       "projectName": "urlredirector",
       "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-VendingApplication<vending>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "com.davidlozzi.vending.VendingApplication",
+      "projectName": "vending",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-VenditApplication<vendit>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "com.davidlozzi.vendit.VenditApplication",
+      "projectName": "vendit",
+      "args": ""
     }
   ]
 }
