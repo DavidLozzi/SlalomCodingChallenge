@@ -13,7 +13,10 @@
     "titleBar.activeBackground": "#0c62fb",
     "titleBar.activeForeground": "#e7e7e7",
     "titleBar.inactiveBackground": "#0c62fb99",
-    "titleBar.inactiveForeground": "#e7e7e799"
+    "titleBar.inactiveForeground": "#e7e7e799",
+    "sash.hoverBorder": "#3e82fc",
+    "statusBarItem.remoteBackground": "#0c62fb",
+    "statusBarItem.remoteForeground": "#e7e7e7"
   },
   "peacock.color": "#0c62fb",
   "java.configuration.updateBuildConfiguration": "automatic"
